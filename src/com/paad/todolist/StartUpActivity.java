@@ -24,14 +24,15 @@ public class StartUpActivity extends Activity implements EditText.OnKeyListener 
         myEditText.setOnKeyListener(this);
 
         todoItems = new ArrayList<String>();
-        aa = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, todoItems);
+        int resId = R.layout.todolist_item;
+        aa = new ArrayAdapter<String>(this, resId, todoItems);
         myListView.setAdapter(aa);
     }
 
     @Override
     public boolean onKey(View view, int keyCode, KeyEvent event) {
         if(event.getAction() == KeyEvent.ACTION_DOWN)
-            if(keyCode == KeyEvent.KEYCODE_ENTER){
+            if((keyCode == KeyEvent.KEYCODE_ENTER) || keyCode == KeyEvent.KEYCODE_DPAD_CENTER){
                 todoItems.add(0, myEditText.getText().toString());
                 aa.notifyDataSetChanged();
                 myEditText.setText("");
