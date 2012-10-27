@@ -23,10 +23,6 @@ public class MyCompoundView extends LinearLayout implements Button.OnClickListen
         init(context);
     }
 
-    public MyCompoundView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        init(context);
-    }
 
     private void init(Context context) {
         String infService = context.LAYOUT_INFLATER_SERVICE;
