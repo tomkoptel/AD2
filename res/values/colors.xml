@@ -4,4 +4,7 @@
     <color name="notepad_lines">#FF0000FF</color>
     <color name="notepad_margin">#90FF0000</color>
     <color name="notepad_text">#AA0000FF</color>
+    <color name="background_color">#F555</color>
+    <color name="marker_color">#AFFF</color>
+    <color name="text_color">#AFFF</color>
 </resources>
