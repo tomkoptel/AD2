@@ -1,24 +1,24 @@
 package com.paad.todolist;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import com.paad.ad2.R;
 
 import java.util.ArrayList;
 
-public class StartUpActivity extends Activity implements EditText.OnKeyListener {
+public class TodoListActivity extends Activity implements EditText.OnKeyListener {
     private ArrayList<String> todoItems;
     private EditText myEditText;
     private ArrayAdapter<String> aa;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.todolist_main);
         ListView myListView = (ListView) findViewById(R.id.myListView);
         myEditText = (EditText) findViewById(R.id.myEditText);
         myEditText.setOnKeyListener(this);

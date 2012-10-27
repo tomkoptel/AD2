@@ -1,4 +1,4 @@
-package com.paad.todolist;
+package com.paad.samples;
 
 import android.content.Context;
 import android.graphics.Canvas;

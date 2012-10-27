@@ -1,4 +1,4 @@
-package com.paad.todolist;
+package com.paad.compass;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
+import com.paad.ad2.R;
 
 public class CompassView extends View {
     private float bearing;
@@ -25,14 +26,16 @@ public class CompassView extends View {
 
     public CompassView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init();
     }
 
     public CompassView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        init();
     }
 
     private void init() {
-        setFocusable(false);
+        setFocusable(true);
 
         Resources resources = this.getResources();
 

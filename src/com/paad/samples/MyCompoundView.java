@@ -1,4 +1,4 @@
-package com.paad.todolist;
+package com.paad.samples;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.paad.ad2.R;
 
 public class MyCompoundView extends LinearLayout implements Button.OnClickListener{
     private TextView editText;
