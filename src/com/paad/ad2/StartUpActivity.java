@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.paad.compass.CompassActivity;
+import com.paad.contactpicker.ContactPickerTester;
 import com.paad.todolist.TodoListActivity;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class StartUpActivity extends Activity implements ListView.OnItemClickLis
         ArrayList<String> list = new ArrayList<String>();
         list.add("Todo List example");
         list.add("Compass example");
+        list.add("Pick contact");
 
         ArrayAdapter<String> aa;
         aa = new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, list);
@@ -34,9 +36,10 @@ public class StartUpActivity extends Activity implements ListView.OnItemClickLis
         switch (i){
             case (0): activityToLaunch = TodoListActivity.class; break;
             case (1): activityToLaunch = CompassActivity.class; break;
+            case (2): activityToLaunch = ContactPickerTester.class; break;
             default: activityToLaunch = TodoListActivity.class; break;
         }
-        Intent intent = new Intent(StartUpActivity.this, activityToLaunch);
+        Intent intent = new Intent(this, activityToLaunch);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(intent);
     }
