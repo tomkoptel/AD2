@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.paad.compass.CompassActivity;
 import com.paad.contactpicker.ContactPickerTester;
 import com.paad.earthquake.EarthquakeActivity;
+import com.paad.surfacecamera.SurfaceActivity;
 import com.paad.todolist.TodoListActivity;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class StartUpActivity extends Activity implements ListView.OnItemClickLis
         list.add("Compass example");
         list.add("Pick contact");
         list.add("Earthquake Viewer");
+        list.add("Surface Camera");
 
         ArrayAdapter<String> aa;
         aa = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
@@ -40,6 +42,7 @@ public class StartUpActivity extends Activity implements ListView.OnItemClickLis
             case (1): activityToLaunch = CompassActivity.class; break;
             case (2): activityToLaunch = ContactPickerTester.class; break;
             case (3): activityToLaunch = EarthquakeActivity.class; break;
+            case (4): activityToLaunch = SurfaceActivity.class; break;
         }
         Intent intent = new Intent(this, activityToLaunch);
         intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

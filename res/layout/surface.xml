@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:id="@+id/frameLayout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <SurfaceView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/surfaceView"/>
+
+    <ImageView
+        android:id="@+id/previewContainer"
+        android:scaleType="fitXY"
+        android:contentDescription="@string/app_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/topImage"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:src="@drawable/top_snow"
+        android:layout_gravity="top"/>
+
+    <ImageView
+        android:id="@+id/bottomImage"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:src="@drawable/bottom_snow"
+        android:layout_gravity="bottom"/>
+
+</FrameLayout>
