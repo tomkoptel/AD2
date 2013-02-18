@@ -41,5 +41,7 @@
         <activity
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:name="com.paad.surfacecamera.SurfaceActivity"/>
+        <activity android:name="com.paad.earthquake.PreferencesActivity"/>
+        <activity android:name="com.paad.earthquake.FragmentPreferences"/>
     </application>
 </manifest>
