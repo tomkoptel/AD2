@@ -5,22 +5,22 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.view.*;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 import com.paad.ad2.R;
 
 import java.util.ArrayList;
 
-public class TodoListActivity extends FragmentActivity implements EditText.OnKeyListener,
+public class TodoListActivity extends FragmentActivity implements NewItemFragment.OnNewItemAddedListener,
         LoaderManager.LoaderCallbacks<Cursor> {
+
     private ArrayList<String> todoItems;
-    private EditText myEditText;
     private ArrayAdapter<String> aa;
     private static final int ADD_NEW_TODO = Menu.FIRST;
     private static final int REMOVE_TODO = Menu.FIRST + 1;
@@ -30,14 +30,14 @@ public class TodoListActivity extends FragmentActivity implements EditText.OnKey
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.todolist_main);
-        myListView = (ListView) findViewById(R.id.myListView);
-        myEditText = (EditText) findViewById(R.id.myEditText);
-        myEditText.setOnKeyListener(this);
+
+        FragmentManager fm = getSupportFragmentManager();
+        ToDoListFragment toDoListFragment = (ToDoListFragment) fm.findFragmentById(R.id.TodoListFragment);
 
         todoItems = new ArrayList<String>();
-        int resId = R.layout.todolist_item;
-        aa = new ArrayAdapter<String>(this, resId, todoItems);
+        aa = new ArrayAdapter<String>(this, R.layout.todolist_item, todoItems);
         myListView.setAdapter(aa);
+        toDoListFragment.setListAdapter(aa);
 
         registerForContextMenu(myListView);
 
@@ -45,16 +45,12 @@ public class TodoListActivity extends FragmentActivity implements EditText.OnKey
     }
 
     @Override
-    public boolean onKey(View view, int keyCode, KeyEvent event) {
-        if(event.getAction() == KeyEvent.ACTION_DOWN)
-            if((keyCode == KeyEvent.KEYCODE_ENTER) || keyCode == KeyEvent.KEYCODE_DPAD_CENTER){
-                todoItems.add(0, myEditText.getText().toString());
-                aa.notifyDataSetChanged();
-                myEditText.setText("");
-                cancelAdd();
-                return true;
-            }
-        return false;
+    public void onNewItemAdded(String newItem) {
+        ContentResolver contentResolver = getContentResolver();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ToDoContentProvider.KEY_TASK, newItem);
+        contentResolver.insert(ToDoContentProvider.CONTENT_URI, contentValues);
+        getSupportLoaderManager().restartLoader(0, null, this);
     }
 
     @Override
@@ -119,7 +115,7 @@ public class TodoListActivity extends FragmentActivity implements EditText.OnKey
 
     private void cancelAdd() {
         addingNew = false;
-        myEditText.setVisibility(View.GONE);
+//        myEditText.setVisibility(View.GONE);
     }
 
     private void removeItem(int index) {
@@ -129,16 +125,8 @@ public class TodoListActivity extends FragmentActivity implements EditText.OnKey
 
     private void addNewItem() {
         addingNew = true;
-        myEditText.setVisibility(View.VISIBLE);
-        myEditText.requestFocus();
-    }
-
-    public void onNewItemAdded(String newItem) {
-        ContentResolver contentResolver = getContentResolver();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(ToDoContentProvider.KEY_TASK, newItem);
-        contentResolver.insert(ToDoContentProvider.CONTENT_URI, contentValues);
-        getSupportLoaderManager().restartLoader(0, null, this);
+//        myEditText.setVisibility(View.VISIBLE);
+//        myEditText.requestFocus();
     }
 
     @Override
