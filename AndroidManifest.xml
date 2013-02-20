@@ -43,5 +43,10 @@
             android:name="com.paad.surfacecamera.SurfaceActivity"/>
         <activity android:name="com.paad.earthquake.PreferencesActivity"/>
         <activity android:name="com.paad.earthquake.FragmentPreferences"/>
+
+        <provider android:name="com.paad.todolist.ToDoContentProvider"
+                  android:authorities="com.paad.todoprovider"/>
+
     </application>
+
 </manifest>
