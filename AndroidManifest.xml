@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.paad.compass.CompassActivity"/>
-        <activity android:name="com.paad.todolist.TodoListActivity"/>
+        <activity android:name="com.paad.todolist.ToDoListActivity"/>
         <activity android:name="com.paad.contactpicker.ContactPicker">
             <intent-filter>
                 <action android:name="android.intent.action.PICK"></action>

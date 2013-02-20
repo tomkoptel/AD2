@@ -8,24 +8,24 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 import com.paad.ad2.R;
 
-public class TodoListItemView extends TextView {
+public class ToDoListItemView extends TextView {
 
     private Paint marginPaint;
     private Paint linePaint;
     private int paperColor;
     private float margin;
 
-    public TodoListItemView(Context context) {
+    public ToDoListItemView(Context context) {
         super(context);
         init();
     }
 
-    public TodoListItemView(Context context, AttributeSet attrs) {
+    public ToDoListItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public TodoListItemView(Context context, AttributeSet attrs, int defStyle) {
+    public ToDoListItemView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }

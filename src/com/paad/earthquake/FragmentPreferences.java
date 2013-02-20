@@ -1,6 +1,5 @@
 package com.paad.earthquake;
 
-import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import com.paad.ad2.R;
 

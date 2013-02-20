@@ -11,7 +11,7 @@ import com.paad.compass.CompassActivity;
 import com.paad.contactpicker.ContactPickerTester;
 import com.paad.earthquake.EarthquakeActivity;
 import com.paad.surfacecamera.SurfaceActivity;
-import com.paad.todolist.TodoListActivity;
+import com.paad.todolist.ToDoListActivity;
 
 import java.util.ArrayList;
 
@@ -38,7 +38,7 @@ public class StartUpActivity extends Activity implements ListView.OnItemClickLis
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Class activityToLaunch = null;
         switch (i){
-            case (0): activityToLaunch = TodoListActivity.class; break;
+            case (0): activityToLaunch = ToDoListActivity.class; break;
             case (1): activityToLaunch = CompassActivity.class; break;
             case (2): activityToLaunch = ContactPickerTester.class; break;
             case (3): activityToLaunch = EarthquakeActivity.class; break;
