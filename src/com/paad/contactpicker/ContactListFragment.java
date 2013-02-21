@@ -36,7 +36,7 @@ public class ContactListFragment extends ListFragment implements LoaderManager.L
 
     @Override
     public void onListItemClick(ListView listView, View view, int position, long id) {
-        ContactPicker activity = (ContactPicker) getActivity();
+        ContactPickerActivity activity = (ContactPickerActivity) getActivity();
         Cursor cursor = getAdapter().getCursor();
 
         cursor.moveToPosition(position);

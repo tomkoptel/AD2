@@ -34,7 +34,7 @@
         </activity>
         <activity android:name="com.paad.compass.CompassActivity"/>
         <activity android:name="com.paad.todolist.ToDoListActivity"/>
-        <activity android:name="com.paad.contactpicker.ContactPicker">
+        <activity android:name="com.paad.contactpicker.ContactPickerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.PICK"></action>
                 <category android:name="android.intent.category.DEFAULT"></category>

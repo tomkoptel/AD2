@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class ToDoListActivity extends FragmentActivity implements NewItemFragment.OnNewItemAddedListener,
         LoaderManager.LoaderCallbacks<Cursor>, ConfirmDialogFragment.ConfirmDialogListener {
-    private static final String ITEM_ID = "itemId";
+    public  static final String ITEM_ID = "itemId";
     public ArrayList<ToDoItem> todoItems;
     private ToDoItemAdapter aa;
     private ConfirmDialogFragment confirmDialog;
@@ -38,11 +38,9 @@ public class ToDoListActivity extends FragmentActivity implements NewItemFragmen
         getSupportLoaderManager().initLoader(0, null, this);
     }
 
-    public void deleteItem(String itemId) {
+    public void showConfirmDialog() {
         FragmentManager fm = getSupportFragmentManager();
         confirmDialog.show(fm, "ConfirmDialog");
-
-        getIntent().putExtra(ITEM_ID, itemId);
     }
 
     @Override

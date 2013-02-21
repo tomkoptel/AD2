@@ -16,7 +16,8 @@ public class ToDoListFragment extends ListFragment implements AdapterView.OnItem
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
         ToDoListActivity activity = (ToDoListActivity) getActivity();
         String itemId = activity.todoItems.get(position).getId();
-        activity.deleteItem(itemId);
+        activity.getIntent().putExtra(ToDoListActivity.ITEM_ID, itemId);
+        activity.showConfirmDialog();
         return true;
     }
 }

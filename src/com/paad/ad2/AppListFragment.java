@@ -1,8 +1,10 @@
 package com.paad.ad2;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.paad.compass.CompassActivity;
 import com.paad.contactpicker.ContactPickerTester;
@@ -11,6 +13,15 @@ import com.paad.surfacecamera.SurfaceActivity;
 import com.paad.todolist.ToDoListActivity;
 
 public class AppListFragment extends ListFragment {
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+         super.onViewCreated(view, savedInstanceState);
+
+        String[] apps = getResources().getStringArray(R.array.apps);
+        ArrayAdapter<String> aa = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, apps);
+        setListAdapter(aa);
+    }
+
     @Override
     public void onListItemClick(ListView listView, View view, int position, long id) {
         Class activityToLaunch = null;
