@@ -51,7 +51,7 @@ public class EarthquakeListFragment extends ListFragment implements LoaderManage
         adapter = new SimpleCursorAdapter(getActivity(), layoutId, null, from, to, NO_CONTENT_OBSERVER);
         setListAdapter(adapter);
 
-        final LoaderManager lm = getActivity().getSupportLoaderManager();
+        LoaderManager lm = getActivity().getSupportLoaderManager();
         lm.initLoader(LOADER_ID, null, this);
 
         Thread t = new Thread(new Runnable() {

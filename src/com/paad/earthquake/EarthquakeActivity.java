@@ -1,5 +1,8 @@
 package com.paad.earthquake;
 
+import android.app.SearchManager;
+import android.app.SearchableInfo;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -9,6 +12,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SearchView;
 import com.paad.ad2.R;
 
 public class EarthquakeActivity extends FragmentActivity {
@@ -23,6 +27,12 @@ public class EarthquakeActivity extends FragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_main);
+
+        updateFromPreferences();
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchableInfo searchableInfo = searchManager.getSearchableInfo(getComponentName());
+        SearchView searchView = (SearchView) findViewById(R.id.searchView);
+        searchView.setSearchableInfo(searchableInfo);
     }
 
     @Override
