@@ -1,45 +1,29 @@
 package com.paad.contactpicker;
 
-import android.app.Activity;
-import android.content.ContentUris;
-import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.SimpleCursorAdapter;
+import com.paad.ad2.AppListFragment;
 import com.paad.ad2.R;
 
-public class ContactPicker extends Activity implements AdapterView.OnItemClickListener {
-    private Cursor cursor;
-
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-
-        cursor = getContentResolver().query(
-                ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
-
-        String[] from = new String[] {ContactsContract.Contacts.DISPLAY_NAME_PRIMARY};
-        int[] to = new int[] {R.id.itemTextView};
-
-        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.listitemlayout, cursor, from, to);
-        ListView lv = (ListView)findViewById(R.id.mainListView);
-        lv.setAdapter(adapter);
-        lv.setOnItemClickListener(this);
-    }
+public class ContactPicker extends FragmentActivity  {
+    private static final int NO_CONTENT_OBSERVER = 0;
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
-        cursor.moveToPosition(pos);
-        int rowId = cursor.getInt(cursor.getColumnIndex("_id"));
-        Uri outUri = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, rowId);
-        Intent outData = new Intent();
-        outData.setData(outUri);
-        setResult(Activity.RESULT_OK, outData);
-        finish();
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main_contact_picker);
+
+        FragmentManager fm = getSupportFragmentManager();
+        ContactListFragment listFragment = (ContactListFragment) fm.findFragmentById(R.id.ContactListFragment);
+
+        String[] from = new String[]{ContactsContract.Contacts.DISPLAY_NAME_PRIMARY};
+        int[] to = new int[]{android.R.id.text1};
+        int layout = android.R.layout.simple_list_item_1;
+
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, layout, null, from, to, NO_CONTENT_OBSERVER);
+        listFragment.setListAdapter(adapter);
     }
 }

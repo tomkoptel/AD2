@@ -6,6 +6,7 @@ import java.util.Date;
 public class ToDoItem {
     String task;
     Date created;
+    String id;
 
     public String getTask() {
         return task;
@@ -15,11 +16,16 @@ public class ToDoItem {
         return created;
     }
 
-    public ToDoItem(String _task) {
-        this(_task, new Date(java.lang.System.currentTimeMillis()));
+    public String getId() {
+        return id;
     }
 
-    public ToDoItem(String _task, Date _created) {
+    public ToDoItem(String _id, String _task) {
+        this(_id, _task, new Date(java.lang.System.currentTimeMillis()));
+    }
+
+    public ToDoItem(String _id, String _task, Date _created) {
+        id = _id;
         task = _task;
         created = _created;
     }

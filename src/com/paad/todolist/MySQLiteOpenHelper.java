@@ -8,7 +8,7 @@ import android.util.Log;
 
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "todoDatabase.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_TABLE = "todoItemTable";
 
     private static final String DATABASE_CREATE = "create table " + DATABASE_TABLE +" ("
@@ -33,7 +33,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         String format = "Upgrading from version %d to %d, which will destroy all old data";
         Log.w("TaskDBAdapter", String.format(format, oldVersion, newVersion));
-        sqLiteDatabase.execSQL("DROP TABLE IF IT EXISTS " + DATABASE_TABLE);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + DATABASE_TABLE);
         onCreate(sqLiteDatabase);
     }
 }
