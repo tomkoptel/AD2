@@ -4,12 +4,16 @@
           android:versionCode="1"
           android:versionName="1.0">
 
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="14" android:maxSdkVersion="16"/>
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="14"
+        android:maxSdkVersion="16"/>
 
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <uses-feature android:name="android.hardware.camera.autofocus"/>
 
     <application
@@ -31,7 +35,7 @@
                 <category android:name="android.intent.category.DEFAULT"></category>
                 <data
                     android:path="contacts"
-                    android:scheme="content"></data>
+                    android:scheme="content"/>
             </intent-filter>
         </activity>
         <activity
@@ -44,9 +48,12 @@
         <activity android:name="com.paad.earthquake.PreferencesActivity"/>
         <activity android:name="com.paad.earthquake.FragmentPreferences"/>
 
-        <provider android:name="com.paad.todolist.ToDoContentProvider"
-                  android:authorities="com.paad.todoprovider"/>
-
+        <provider
+            android:name="com.paad.todolist.ToDoContentProvider"
+            android:authorities="com.paad.todoprovider"/>
+        <provider
+            android:name="com.paad.earthquake.EarthquakeProvider"
+            android:authorities="com.paad.earthquakeprovider"/>
     </application>
 
 </manifest>
