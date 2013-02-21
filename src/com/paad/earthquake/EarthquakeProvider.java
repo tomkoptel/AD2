@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
 
-import java.sql.SQLException;
-
 public class EarthquakeProvider extends ContentProvider {
     private static final String AUTHORITY = "com.paad.earthquakeprovider";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/earthquakes");

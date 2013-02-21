@@ -16,12 +16,19 @@ import android.view.View;
 import android.widget.ListView;
 
 public class ContactListFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
-
+    private static final int NO_CONTENT_OBSERVER = 0;
     private static final int LOADER_ID = 0;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        String[] from = new String[]{ContactsContract.Contacts.DISPLAY_NAME_PRIMARY};
+        int[] to = new int[]{android.R.id.text1};
+        int layout = android.R.layout.simple_list_item_1;
+
+        SimpleCursorAdapter adapter = new SimpleCursorAdapter(getActivity(), layout, null, from, to, NO_CONTENT_OBSERVER);
+        setListAdapter(adapter);
 
         LoaderManager lm = getActivity().getSupportLoaderManager();
         lm.initLoader(LOADER_ID, null, this);

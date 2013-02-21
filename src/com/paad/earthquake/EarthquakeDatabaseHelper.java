@@ -5,7 +5,6 @@ import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import com.paad.todolist.ToDoContentProvider;
 
 public class EarthquakeDatabaseHelper extends SQLiteOpenHelper {
     private static final String TAG = "EarthquakeProvider";
