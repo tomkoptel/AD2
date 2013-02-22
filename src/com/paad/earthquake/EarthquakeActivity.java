@@ -62,14 +62,10 @@ public class EarthquakeActivity extends FragmentActivity {
             updateFromPreferences();
 
         FragmentManager fm = getSupportFragmentManager();
-        final EarthquakeListFragment earthquakeList =(EarthquakeListFragment)
+        EarthquakeListFragment earthquakeList = (EarthquakeListFragment)
                         fm.findFragmentById(R.id.EarthquakeListFragment);
-        Thread t = new Thread(new Runnable() {
-            public void run() {
-                earthquakeList.refreshEarthquakes();
-            }
-        });
-        t.start();
+
+        earthquakeList.refreshEarthquakes();
     }
 
     private void updateFromPreferences() {

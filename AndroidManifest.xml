@@ -71,6 +71,8 @@
         <provider
             android:name="com.paad.earthquake.EarthquakeProvider"
             android:authorities="com.paad.earthquakeprovider"/>
+
+        <service android:enabled="true" android:name="com.paad.earthquake.EarthquakeUpdateService"/>
     </application>
 
 </manifest>
