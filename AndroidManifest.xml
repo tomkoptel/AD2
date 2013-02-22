@@ -36,8 +36,8 @@
         <activity android:name="com.paad.todolist.ToDoListActivity"/>
         <activity android:name="com.paad.contactpicker.ContactPickerActivity">
             <intent-filter>
-                <action android:name="android.intent.action.PICK"></action>
-                <category android:name="android.intent.category.DEFAULT"></category>
+                <action android:name="android.intent.action.PICK"/>
+                <category android:name="android.intent.category.DEFAULT"/>
                 <data
                     android:path="contacts"
                     android:scheme="content"/>
@@ -46,7 +46,9 @@
         <activity
             android:name="com.paad.contactpicker.ContactPickerTester"
             android:label="Contact Picker Test"/>
-        <activity android:name="com.paad.earthquake.EarthquakeActivity"/>
+        <activity
+            android:name="com.paad.earthquake.EarthquakeActivity"
+            android:configChanges="keyboardHidden"/>
         <activity
             android:theme="@android:style/Theme.Black.NoTitleBar"
             android:name="com.paad.surfacecamera.SurfaceActivity"/>
@@ -73,6 +75,14 @@
             android:authorities="com.paad.earthquakeprovider"/>
 
         <service android:enabled="true" android:name="com.paad.earthquake.EarthquakeUpdateService"/>
+
+        <receiver android:name="com.paad.earthquake.EarthquakeAlarmReceiver">
+        <intent-filter>
+            <action
+                android:name="com.paad.earthquake.ACTION_REFRESH_EARTHQUAKE_ALARM"
+            />
+        </intent-filter>
+    </receiver>
     </application>
 
 </manifest>

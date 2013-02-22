@@ -1,10 +1,13 @@
 package com.paad.earthquake;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.*;
 import android.database.Cursor;
 import android.location.Location;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import com.paad.ad2.R;
 import org.w3c.dom.Document;
@@ -31,7 +34,8 @@ import java.util.TimerTask;
 public class EarthquakeUpdateService extends Service {
     public static String TAG = "EARTHQUAKE_UPDATE_SERVICE";
     private static final String TIMER_TAG = "earthquakesUpdates";
-    private Timer updateTimer;
+    private AlarmManager alarmManager;
+    private PendingIntent alarmIntent;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -41,7 +45,11 @@ public class EarthquakeUpdateService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        updateTimer = new Timer(TIMER_TAG);
+
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        String ALARM_ACTION = EarthquakeAlarmReceiver.ACTION_REFRESH_EARTHQUAKE_ALARM;
+        Intent intentToFire = new Intent(ALARM_ACTION);
+        alarmIntent = PendingIntent.getBroadcast(this, 0, intentToFire, 0);
     }
 
     @Override
@@ -52,30 +60,25 @@ public class EarthquakeUpdateService extends Service {
         int updateFreq = Integer.parseInt(preferences.getString(PreferencesActivity.PREF_UPDATE_FREQ, "60"));
         boolean autoUpdatedChecked = preferences.getBoolean(PreferencesActivity.PREF_AUTO_UPDATE, false);
 
-        updateTimer.cancel();
-
-        if(autoUpdatedChecked && doRefresh.cancel()) {
-            updateTimer = new Timer(TIMER_TAG);
-            updateTimer.scheduleAtFixedRate(doRefresh, 0, updateFreq * 60 * 1000);
+        if(autoUpdatedChecked) {
+            int frequency = updateFreq * 60 * 1000;
+            int alarmType = AlarmManager.ELAPSED_REALTIME_WAKEUP;
+            long timeToRefresh = SystemClock.elapsedRealtime() + frequency;
+            alarmManager.setInexactRepeating(alarmType, timeToRefresh, frequency, alarmIntent);
         } else {
-            Thread thread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    refreshEarthquakes();
-                }
-            });
-            thread.start();
+            alarmManager.cancel(alarmIntent);
         }
 
-        return Service.START_STICKY;
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                refreshEarthquakes();
+            }
+        });
+        thread.start();
+
+        return Service.START_NOT_STICKY;
     }
-
-    private TimerTask doRefresh = new TimerTask() {
-        @Override
-        public void run() {
-            refreshEarthquakes();
-        }
-    };
 
     public void refreshEarthquakes() {
         URL url;
@@ -110,6 +113,8 @@ public class EarthquakeUpdateService extends Service {
         } catch (IOException e) {
         } catch (ParserConfigurationException e) {
         } catch (SAXException e) {
+        } finally {
+            stopSelf();
         }
 
     }
