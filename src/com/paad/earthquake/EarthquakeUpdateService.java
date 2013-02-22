@@ -1,12 +1,11 @@
 package com.paad.earthquake;
 
 import android.app.AlarmManager;
+import android.app.IntentService;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.*;
 import android.database.Cursor;
 import android.location.Location;
-import android.os.IBinder;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import com.paad.ad2.R;
@@ -28,18 +27,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class EarthquakeUpdateService extends Service {
-    public static String TAG = "EARTHQUAKE_UPDATE_SERVICE";
-    private static final String TIMER_TAG = "earthquakesUpdates";
+public class EarthquakeUpdateService extends IntentService {
     private AlarmManager alarmManager;
     private PendingIntent alarmIntent;
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public EarthquakeUpdateService() {
+        super("EarthquakeUpdateService");
+    }
+
+    public EarthquakeUpdateService(String name) {
+        super(name);
     }
 
     @Override
@@ -53,7 +51,7 @@ public class EarthquakeUpdateService extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    protected void onHandleIntent(Intent intent) {
         Context context = getApplicationContext();
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
 
@@ -69,15 +67,7 @@ public class EarthquakeUpdateService extends Service {
             alarmManager.cancel(alarmIntent);
         }
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                refreshEarthquakes();
-            }
-        });
-        thread.start();
-
-        return Service.START_NOT_STICKY;
+        refreshEarthquakes();
     }
 
     public void refreshEarthquakes() {

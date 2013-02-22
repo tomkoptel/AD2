@@ -4,21 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 
-import java.util.ArrayList;
-
 public class EarthquakeListFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int NO_CONTENT_OBSERVER = 0;
     private static final int LOADER_ID = 0;
-    private ArrayList<Quake> earthquakes = new ArrayList<Quake>();
-    private static final String TAG = "EARTHQUAKE";
-    private Handler handler = new Handler();
 
     @Override
     public void onActivityCreated(Bundle savedInstance) {
