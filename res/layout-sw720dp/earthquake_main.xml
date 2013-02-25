@@ -12,8 +12,16 @@
         android:layout_height="wrap_content">
     </SearchView>
 
-    <FrameLayout
-        android:id="@+id/EarthquakeFragmentContainer"
-        android:layout_width="match_parent"
+    <fragment
+        android:name="com.paad.earthquake.EarthquakeListFragment"
+        android:id="@+id/EarthquakeListFragment"
+        android:layout_width="360dp"
         android:layout_height="match_parent"/>
+
+    <fragment
+        android:name="com.paad.earthquake.EarthquakeMapFragment"
+        android:id="@+id/EarthquakeMapFragment"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"/>
+
 </LinearLayout>
