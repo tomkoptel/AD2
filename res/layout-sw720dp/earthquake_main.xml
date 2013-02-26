@@ -5,13 +5,6 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:iconifiedByDefault="false"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </SearchView>
-
     <fragment
         android:name="com.paad.earthquake.EarthquakeListFragment"
         android:id="@+id/EarthquakeListFragment"

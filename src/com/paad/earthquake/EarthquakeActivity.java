@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.SearchView;
@@ -32,7 +33,6 @@ public class EarthquakeActivity extends FragmentActivity {
 
         initActionBar();
         updateFromPreferences();
-        initSearchView();
     }
 
     private void initActionBar() {
@@ -77,24 +77,30 @@ public class EarthquakeActivity extends FragmentActivity {
         autoUpdateChecked = prefs.getBoolean(PreferencesActivity.PREF_AUTO_UPDATE, false);
     }
 
-    private void initSearchView() {
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchableInfo searchableInfo = searchManager.getSearchableInfo(getComponentName());
-        SearchView searchView = (SearchView) findViewById(R.id.searchView);
-        searchView.setSearchableInfo(searchableInfo);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.add(0, MENU_PREFERENCES, Menu.NONE, R.string.menu_preferences);
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+        SearchableInfo searchableInfo = searchManager.getSearchableInfo(getComponentName());
+        searchView.setSearchableInfo(searchableInfo);
+
         return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
-            case (MENU_PREFERENCES): {
+            case (R.id.menu_refresh): {
+                startService(new Intent(this, EarthquakeUpdateService.class));
+                break;
+            }
+            case (R.id.menu_preferences): {
                 Class c = Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB ?
                         PreferencesActivity.class : FragmentPreferences.class;
                 Intent intent = new Intent(this, c);

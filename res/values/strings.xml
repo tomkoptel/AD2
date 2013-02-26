@@ -10,6 +10,7 @@
     <string name="cancel">Cancel</string>
     <string name="quake_feed">http://earthquake.usgs.gov/eqcenter/catalogs/1day-M2.5.xml</string>
     <string name="menu_preferences">Preferences</string>
+    <string name="menu_refresh">Refresh</string>
     <string name="addItemContentDescription">Some description</string>
     <string name="addItemHint">Create new item</string>
     <string name="search_description">Search earthquake locations</string>
