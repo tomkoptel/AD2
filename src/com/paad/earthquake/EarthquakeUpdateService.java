@@ -2,6 +2,7 @@ package com.paad.earthquake;
 
 import android.app.AlarmManager;
 import android.app.IntentService;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.*;
 import android.database.Cursor;
@@ -31,6 +32,9 @@ import java.util.GregorianCalendar;
 public class EarthquakeUpdateService extends IntentService {
     private AlarmManager alarmManager;
     private PendingIntent alarmIntent;
+    private Notification.Builder earthquakeNotificationBuilder;
+    public static final int NOTIFICATION_ID = 1;
+
 
     public EarthquakeUpdateService() {
         super("EarthquakeUpdateService");
@@ -48,6 +52,12 @@ public class EarthquakeUpdateService extends IntentService {
         String ALARM_ACTION = EarthquakeAlarmReceiver.ACTION_REFRESH_EARTHQUAKE_ALARM;
         Intent intentToFire = new Intent(ALARM_ACTION);
         alarmIntent = PendingIntent.getBroadcast(this, 0, intentToFire, 0);
+
+        earthquakeNotificationBuilder = new Notification.Builder(this);
+        earthquakeNotificationBuilder
+                .setAutoCancel(true)
+                .setTicker("Earthquake detected")
+                .setSmallIcon(R.drawable.notification_icon);
     }
 
     @Override
