@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,7 +14,7 @@ import android.view.View;
 import android.widget.SearchView;
 import com.paad.ad2.R;
 
-public class EarthquakeActivity extends FragmentActivity {
+public class EarthquakeActivity extends Activity {
     private static final int MENU_PREFERENCES = Menu.FIRST + 1;
     private static final int MENU_UPDATE = Menu.FIRST + 2;
     private static final int SHOW_PREFERENCES = 1;
@@ -63,7 +62,6 @@ public class EarthquakeActivity extends FragmentActivity {
     }
 
     private boolean isTabletLayout() {
-        ActionBar actionBar = getActionBar();
         View fragmentContainer = findViewById(R.id.EarthquakeFragmentContainer);
         return (fragmentContainer == null);
     }
