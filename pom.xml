@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.paad.ad2</groupId>
+    <artifactId>atopi</artifactId>
+    <name>AD2</name>
+    <version>1.0.0</version>
+    <packaging>apklib</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.6</java.version>
+        <android.version>4.1.1.4</android.version>
+        <android.platform>16</android.platform>
+        <android.support.version>r7</android.support.version>
+        <android.sherlock>4.2.0</android.sherlock>
+        <android.viewpagerindicator>2.4.1</android.viewpagerindicator>
+        <android.mottimotti>1.0.2</android.mottimotti>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <scope>provided</scope>
+            <version>${android.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>support-v4</artifactId>
+            <version>${android.support.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.actionbarsherlock</groupId>
+            <artifactId>library</artifactId>
+            <version>${android.sherlock}</version>
+            <type>apklib</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.viewpagerindicator</groupId>
+            <artifactId>library</artifactId>
+            <version>${android.viewpagerindicator}</version>
+            <type>apklib</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+
+        <plugins>
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <sdk>${android.platform}</sdk>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

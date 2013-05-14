@@ -1,33 +1,39 @@
 package com.paad.earthquake;
 
-import android.app.ListActivity;
-import android.app.LoaderManager;
 import android.app.SearchManager;
-import android.content.CursorLoader;
 import android.content.Intent;
-import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.widget.ListView;
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.paad.ad2.R;
 
-public class EarthquakeSearchResults extends ListActivity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+public class EarthquakeSearchResults extends FragmentActivity implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int NO_CONTENT_OBSERVER = 0;
     private static final int LOADER_ID = 0;
     private static final String QUERY_EXTRA_KEY = "QUERY_EXTRA_KEY";
+    private SimpleCursorAdapter adapter;
 
     @Override
     public void onCreate(Bundle saveInstance) {
         super.onCreate(saveInstance);
+        setContentView(R.layout.list_content);
 
         int layoutId = android.R.layout.simple_list_item_1;
         String[] from = new String[]{EarthquakeProvider.KEY_SUMMARY};
         int[] to = new int[]{android.R.id.text1};
 
-        SimpleCursorAdapter adapter;
         adapter = new SimpleCursorAdapter(this, layoutId, null, from, to, NO_CONTENT_OBSERVER);
-        setListAdapter(adapter);
+        ListView listView = (ListView) findViewById(android.R.id.list);
+        listView.setAdapter(adapter);
 
-        LoaderManager lm = getLoaderManager();
+        LoaderManager lm = getSupportLoaderManager();
         lm.initLoader(LOADER_ID, null, this);
 
         parseIntent(getIntent());
@@ -44,7 +50,7 @@ public class EarthquakeSearchResults extends ListActivity implements LoaderManag
             String searchQuery = intent.getStringExtra(SearchManager.QUERY);
             Bundle args = new Bundle();
             args.putString(QUERY_EXTRA_KEY, searchQuery);
-            getLoaderManager().restartLoader(0, args, this);
+            getSupportLoaderManager().restartLoader(0, args, this);
         }
     }
 
@@ -71,17 +77,13 @@ public class EarthquakeSearchResults extends ListActivity implements LoaderManag
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
         switch (cursorLoader.getId()) {
             case LOADER_ID:
-                getAdapter().swapCursor(cursor);
+                adapter.swapCursor(cursor);
                 break;
         }
     }
 
     @Override
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
-        getAdapter().swapCursor(null);
-    }
-
-    public SimpleCursorAdapter getAdapter() {
-        return (SimpleCursorAdapter) getListAdapter();
+        adapter.swapCursor(null);
     }
 }

@@ -14,8 +14,9 @@ import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.View;
 import android.widget.ListView;
+import com.actionbarsherlock.app.SherlockListFragment;
 
-public class ContactListFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
+public class ContactListFragment extends SherlockListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
     private static final int NO_CONTENT_OBSERVER = 0;
     private static final int LOADER_ID = 0;
 

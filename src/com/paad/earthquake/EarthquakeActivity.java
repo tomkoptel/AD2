@@ -1,20 +1,26 @@
 package com.paad.earthquake;
 
-import android.app.*;
+import android.app.Activity;
+import android.app.SearchManager;
+import android.app.SearchableInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
+import com.actionbarsherlock.view.MenuItem;
+import com.actionbarsherlock.widget.SearchView;
 import com.paad.ad2.R;
 
-public class EarthquakeActivity extends Activity {
+public class EarthquakeActivity extends SherlockFragmentActivity {
     private static final int MENU_PREFERENCES = Menu.FIRST + 1;
     private static final int MENU_UPDATE = Menu.FIRST + 2;
     private static final int SHOW_PREFERENCES = 1;
@@ -37,7 +43,7 @@ public class EarthquakeActivity extends Activity {
     private void initActionBar() {
         if (isTabletLayout()) return;
 
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
 
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         actionBar.setDisplayShowTitleEnabled(false);
@@ -80,7 +86,7 @@ public class EarthquakeActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
 
-        MenuInflater inflater = getMenuInflater();
+        MenuInflater inflater = getSupportMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
@@ -121,12 +127,13 @@ public class EarthquakeActivity extends Activity {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         if (!isTabletLayout()) {
-            int actionBarIndex = getActionBar().getSelectedTab().getPosition();
+            int actionBarIndex = getSupportActionBar().getSelectedTab().getPosition();
+
             SharedPreferences.Editor editor = getPreferences(Activity.MODE_PRIVATE).edit();
             editor.putInt(ACTION_BAR_INDEX, actionBarIndex);
             editor.apply();
 
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             if (mapTabListener.fragment != null)
                 ft.detach(mapTabListener.fragment);
             if (listTabListener.fragment != null)
@@ -142,15 +149,13 @@ public class EarthquakeActivity extends Activity {
         super.onRestoreInstanceState(savedInstance);
 
         if (isTabletLayout()) return;
-
-        listTabListener.fragment =
-                getFragmentManager().findFragmentByTag(EarthquakeListFragment.class.getName());
-        mapTabListener.fragment =
-                getFragmentManager().findFragmentByTag(EarthquakeMapFragment.class.getName());
+        FragmentManager fm = getSupportFragmentManager();
+        listTabListener.fragment = fm.findFragmentByTag(EarthquakeListFragment.class.getName());
+        mapTabListener.fragment = fm.findFragmentByTag(EarthquakeMapFragment.class.getName());
 
         SharedPreferences sp = getPreferences(Activity.MODE_PRIVATE);
         int actionBarIndex = sp.getInt(ACTION_BAR_INDEX, 0);
-        getActionBar().setSelectedNavigationItem(actionBarIndex);
+        getSupportActionBar().setSelectedNavigationItem(actionBarIndex);
     }
 
     @Override
@@ -161,6 +166,6 @@ public class EarthquakeActivity extends Activity {
 
         SharedPreferences sp = getPreferences(Activity.MODE_PRIVATE);
         int actionBarIndex = sp.getInt(ACTION_BAR_INDEX, 0);
-        getActionBar().setSelectedNavigationItem(actionBarIndex);
+        getSupportActionBar().setSelectedNavigationItem(actionBarIndex);
     }
 }

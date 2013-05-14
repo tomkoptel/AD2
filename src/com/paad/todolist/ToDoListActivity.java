@@ -9,12 +9,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.paad.ad2.ConfirmDialogFragment;
 import com.paad.ad2.R;
 
 import java.util.ArrayList;
 
-public class ToDoListActivity extends FragmentActivity implements NewItemFragment.OnNewItemAddedListener,
+public class ToDoListActivity extends SherlockActivity implements NewItemFragment.OnNewItemAddedListener,
         LoaderManager.LoaderCallbacks<Cursor>, ConfirmDialogFragment.ConfirmDialogListener {
     public  static final String ITEM_ID = "itemId";
     public ArrayList<ToDoItem> todoItems;
@@ -35,7 +36,7 @@ public class ToDoListActivity extends FragmentActivity implements NewItemFragmen
         aa = new ToDoItemAdapter(this, R.layout.todolist_item, todoItems);
         toDoListFragment.setListAdapter(aa);
 
-        getSupportLoaderManager().initLoader(0, null, this);
+        getLoaderManager().initLoader(0, null, this);
     }
 
     public void showConfirmDialog() {

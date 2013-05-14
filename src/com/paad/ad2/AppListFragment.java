@@ -6,13 +6,15 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import com.actionbarsherlock.app.SherlockListActivity;
+import com.actionbarsherlock.app.SherlockListFragment;
 import com.paad.compass.CompassActivity;
 import com.paad.contactpicker.ContactPickerTester;
 import com.paad.earthquake.EarthquakeActivity;
 import com.paad.surfacecamera.SurfaceActivity;
 import com.paad.todolist.ToDoListActivity;
 
-public class AppListFragment extends ListFragment {
+public class AppListFragment extends SherlockListFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
          super.onViewCreated(view, savedInstanceState);

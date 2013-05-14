@@ -8,9 +8,10 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.TextView;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.paad.ad2.R;
 
-public class ContactPickerTester extends Activity {
+public class ContactPickerTester extends SherlockActivity {
     public static final int PICK_CONTACT = 1;
 
     public void onCreate(Bundle savedInstanceState) {
