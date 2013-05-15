@@ -16,7 +16,7 @@
         android:layout_alignParentRight="true"
         />
 
-    <com.paad.todolist.ToDoListItemView
+    <com.paad.ad2.todolist.ToDoListItemView
         android:id="@+id/row"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

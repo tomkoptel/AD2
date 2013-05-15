@@ -5,7 +5,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
     <fragment
-        android:name="com.paad.contactpicker.ContactListFragment"
+        android:name="com.paad.ad2.contactpicker.ContactListFragment"
         android:id="@+id/ContactListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

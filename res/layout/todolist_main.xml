@@ -6,14 +6,14 @@
     >
 
     <fragment
-        android:name="com.paad.todolist.NewItemFragment"
+        android:name="com.paad.ad2.todolist.NewItemFragment"
         android:id="@+id/NewItemFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
 
     <fragment
-        android:name="com.paad.todolist.ToDoListFragment"
+        android:name="com.paad.ad2.todolist.ToDoListFragment"
         android:id="@+id/TodoListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

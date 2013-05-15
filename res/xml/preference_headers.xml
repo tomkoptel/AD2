@@ -2,7 +2,7 @@
 
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
     <header
-        android:fragment="com.paad.earthquake.UserPreferenceFragment"
+        android:fragment="com.paad.ad2.earthquake.UserPreferenceFragment"
         android:title="Settings"
         android:summary="Earthquake Refresh Settings"/>
 </preference-headers>
