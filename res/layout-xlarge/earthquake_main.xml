@@ -6,13 +6,13 @@
               android:layout_height="match_parent">
 
     <fragment
-        android:name="com.paad.earthquake.EarthquakeListFragment"
+        android:name="com.paad.ad2.earthquake.EarthquakeListFragment"
         android:id="@+id/EarthquakeListFragment"
         android:layout_width="360dp"
         android:layout_height="match_parent"/>
 
     <fragment
-        android:name="com.paad.earthquake.EarthquakeMapFragment"
+        android:name="com.paad.ad2.earthquake.EarthquakeMapFragment"
         android:id="@+id/EarthquakeMapFragment"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"/>

@@ -2,17 +2,15 @@ package com.paad.ad2;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.app.SherlockListFragment;
-import com.paad.compass.CompassActivity;
-import com.paad.contactpicker.ContactPickerTester;
-import com.paad.earthquake.EarthquakeActivity;
-import com.paad.surfacecamera.SurfaceActivity;
-import com.paad.todolist.ToDoListActivity;
+import com.paad.ad2.compass.CompassActivity;
+import com.paad.ad2.contactpicker.ContactPickerTester;
+import com.paad.ad2.earthquake.EarthquakeActivity;
+import com.paad.ad2.surfacecamera.SurfaceActivity;
+import com.paad.ad2.todolist.ToDoListActivity;
 
 public class AppListFragment extends SherlockListFragment {
     @Override

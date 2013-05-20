@@ -1,7 +1,6 @@
 package com.paad.ad2;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import com.actionbarsherlock.app.SherlockActivity;
 
 public class StartUpActivity extends SherlockActivity {

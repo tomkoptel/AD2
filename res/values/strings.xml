@@ -14,4 +14,5 @@
     <string name="addItemContentDescription">Some description</string>
     <string name="addItemHint">Create new item</string>
     <string name="search_description">Search earthquake locations</string>
+    <string name="map_api_key">AIzaSyBc_y1GT9pRkQDrYEQGHA8mihXvEjZS-VA</string>
 </resources>
