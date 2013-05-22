@@ -31,12 +31,4 @@
         <item>15</item>
         <item>60</item>
     </string-array>
-    
-    <string-array name="apps">
-        <item>Todo List example"</item>
-        <item>Compass example"</item>
-        <item>Pick contact"</item>
-        <item>Earthquake Viewer"</item>
-        <item>Surface Camera"</item>
-    </string-array>
 </resources>
