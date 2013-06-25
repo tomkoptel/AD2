@@ -5,14 +5,6 @@
     <string name="cardinal_east">E</string>
     <string name="cardinal_south">S</string>
     <string name="cardinal_west">W</string>
-    <string name="add_new">Add New Item</string>
-    <string name="remove">Remove Item</string>
-    <string name="cancel">Cancel</string>
     <string name="quake_feed">http://earthquake.usgs.gov/eqcenter/catalogs/1day-M2.5.xml</string>
-    <string name="menu_preferences">Preferences</string>
-    <string name="menu_refresh">Refresh</string>
-    <string name="addItemContentDescription">Some description</string>
-    <string name="addItemHint">Create new item</string>
-    <string name="search_description">Search earthquake locations</string>
     <string name="map_api_key">AIzaSyBc_y1GT9pRkQDrYEQGHA8mihXvEjZS-VA</string>
 </resources>

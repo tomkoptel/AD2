@@ -6,6 +6,7 @@ import android.app.SearchableInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -20,6 +21,8 @@ import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.widget.SearchView;
 import com.paad.ad2.R;
 
+import java.util.Locale;
+
 public class EarthquakeActivity extends SherlockFragmentActivity {
     private static final int MENU_PREFERENCES = Menu.FIRST + 1;
     private static final int MENU_UPDATE = Menu.FIRST + 2;
@@ -31,13 +34,28 @@ public class EarthquakeActivity extends SherlockFragmentActivity {
     public boolean autoUpdateChecked;
     private TabListener<EarthquakeListFragment> listTabListener;
     private TabListener<EarthquakeMapFragment> mapTabListener;
+    private String localization;
 
     public void onCreate(Bundle savedInstanceState) {
+        setUpLanguage();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_main);
 
         initActionBar();
         updateFromPreferences();
+    }
+
+    private void setUpLanguage() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        localization = prefs.getString(PreferencesActivity.PREF_LANGUAGE, "en");
+
+        Locale locale = new Locale(localization);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
     }
 
     private void initActionBar() {
@@ -51,8 +69,8 @@ public class EarthquakeActivity extends SherlockFragmentActivity {
         ActionBar.Tab listTab = actionBar.newTab();
 
         listTabListener = new TabListener<EarthquakeListFragment>(this, R.id.EarthquakeFragmentContainer, EarthquakeListFragment.class);
-        listTab.setText("List")
-                .setContentDescription("List of earthquakes")
+        listTab.setText(R.string.list)
+                .setContentDescription(R.string.list_description)
                 .setTabListener(listTabListener);
 
         actionBar.addTab(listTab);
@@ -60,8 +78,8 @@ public class EarthquakeActivity extends SherlockFragmentActivity {
         ActionBar.Tab mapTab = actionBar.newTab();
 
         mapTabListener = new TabListener<EarthquakeMapFragment>(this, R.id.EarthquakeFragmentContainer, EarthquakeMapFragment.class);
-        mapTab.setText("Map")
-                .setContentDescription("Map of earthquakes")
+        mapTab.setText(R.string.map)
+                .setContentDescription(R.string.map_description)
                 .setTabListener(mapTabListener);
 
         actionBar.addTab(mapTab);
@@ -79,6 +97,7 @@ public class EarthquakeActivity extends SherlockFragmentActivity {
         updateFreq =
                 Integer.parseInt(prefs.getString(PreferencesActivity.PREF_UPDATE_FREQ, "60"));
         autoUpdateChecked = prefs.getBoolean(PreferencesActivity.PREF_AUTO_UPDATE, false);
+        localization = prefs.getString(PreferencesActivity.PREF_LANGUAGE, "en");
     }
 
 
@@ -121,6 +140,8 @@ public class EarthquakeActivity extends SherlockFragmentActivity {
         if (requestCode == SHOW_PREFERENCES) {
             updateFromPreferences();
             startService(new Intent(this, EarthquakeUpdateService.class));
+            finish();
+            startActivity(getIntent());
         }
     }
 

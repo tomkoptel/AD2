@@ -22,4 +22,12 @@
         android:entryValues="@array/magnitude"
         android:dialogTitle="Magnitude"
         android:defaultValue="3"/>
+    <ListPreference
+        android:key="PREF_LANGUAGE"
+        android:title="Language"
+        android:summary="Select the app localization preference"
+        android:entries="@array/language_values"
+        android:entryValues="@array/language_values"
+        android:dialogTitle="Language"
+        android:defaultValue="en"/>
 </PreferenceScreen>

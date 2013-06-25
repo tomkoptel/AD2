@@ -90,7 +90,7 @@
         <activity
             android:name=".earthquake.EarthquakeActivity"
             android:uiOptions="splitActionBarWhenNarrow"
-            android:configChanges="keyboardHidden"
+            android:configChanges="keyboardHidden|locale"
             android:label="Earthquake picker demo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

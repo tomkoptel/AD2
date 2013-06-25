@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="add_new">Neues Element hinzufügen</string>
+    <string name="remove">Artikel entfernen</string>
+    <string name="cancel">Stornieren</string>
+    <string name="menu_preferences">Einstellungen</string>
+    <string name="menu_refresh">Erfrischen</string>
+    <string name="addItemContentDescription">Einige beschreibung</string>
+    <string name="addItemHint">Neues artikel</string>
+    <string name="search_description">Suche erdbeben standorten</string>
+    <string name="list">Liste</string>
+    <string name="list_description">Liste des tremblements de terre</string>
+    <string name="map">Carte</string>
+    <string name="map_description">Carte des séismes</string>
+</resources>
